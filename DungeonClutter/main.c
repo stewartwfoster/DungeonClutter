@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
 			break;
 		}
 
-		DrawFPS(0, 0);
+		//DrawFPS(0, 0);
 		EndDrawing();
 
 		tick++;

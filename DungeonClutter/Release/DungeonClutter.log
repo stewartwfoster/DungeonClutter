@@ -1,0 +1,117 @@
+﻿  game.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(36): warning C4013: 'free' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(71): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(76): warning C4047: '=': 'int **' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(78): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(95): warning C4013: 'exit' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(34): warning C4090: 'initializing': different 'const' qualifiers
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(65): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(71): warning C4047: 'initializing': 'level *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(84): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(115): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(186): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(187): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(189): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(190): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(197): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(182): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(208): warning C4013: 'calloc' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(208): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(206): warning C4047: 'initializing': 'int **' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(225): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(230): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(231): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(239): warning C4020: 'function through pointer': too many actual parameters
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(290): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(393): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(395): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(337): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(352): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(355): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(361): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(423): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(424): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(425): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(427): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(428): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(429): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(450): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(452): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(464): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(477): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(478): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(489): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(515): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(531): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(418): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(497): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(500): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  list.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\list.c(5): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\list.c(8): warning C4047: '=': 'object *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\list.c(5): warning C4047: 'initializing': 'list *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\list.c(21): warning C4013: 'free' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\list.c(27): warning C4013: 'realloc' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\list.c(27): warning C4047: '=': 'object *' differs in levels of indirection from 'int'
+  main.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\main.c(77): warning C4013: 'menu_free' undefined; assuming extern returning int
+  menu.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(9): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(9): warning C4047: 'initializing': 'menu *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(20): warning C4013: 'free' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(49): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(50): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(69): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(70): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(45): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(46): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\menu.c(58): warning C4090: 'initializing': different 'const' qualifiers
+  objects.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(14): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(14): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(17): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(19): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(21): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(25): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(27): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(29): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(31): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(33): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(35): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(37): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(39): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(43): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(46): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(48): warning C4047: 'initializing': 'Texture2D *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(51): warning C4113: 'interact_result (__cdecl *)(object *,game *)' differs in parameter lists from 'interact_result (__cdecl *)(void *)'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(55): warning C4047: 'initializing': 'object *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(66): warning C4013: 'free' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(110): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(111): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(119): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(121): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(137): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(159): warning C4013: 'calloc' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(159): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(165): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(165): warning C4020: 'flood_fill_primer': too many actual parameters
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(157): warning C4047: 'initializing': 'int **' differs in levels of indirection from 'int'
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\objects.c(220): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+  sounds.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\sounds.c(7): warning C4013: 'free' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\sounds.c(5): warning C4090: 'initializing': different 'const' qualifiers
+  sprites.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\sprites.c(8): warning C4013: 'free' undefined; assuming extern returning int
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\sprites.c(6): warning C4090: 'initializing': different 'const' qualifiers
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\sprites.c(14): warning C4090: 'initializing': different 'const' qualifiers
+  utils.c
+raylib.lib(core.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+     Creating library C:\Users\stewa\source\repos\DungeonClutter\Release\DungeonClutter.lib and object C:\Users\stewa\source\repos\DungeonClutter\Release\DungeonClutter.exp
+LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(202): warning C4716: 'flood_fill': must return a value
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\game.c(109): warning C4715: 'start_level_from_file': not all control paths return a value
+  All 60 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  DungeonClutter.vcxproj -> C:\Users\stewa\source\repos\DungeonClutter\Release\DungeonClutter.exe
