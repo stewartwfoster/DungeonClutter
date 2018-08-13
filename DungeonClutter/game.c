@@ -6,7 +6,8 @@
 #include "utils.h"
 #include <stdio.h>
 
-sound_enabled = 1;
+int sound_enabled = 1;
+game g;
 
 void play_sound(Sound snd) {
 	if (sound_enabled) {
@@ -16,62 +17,106 @@ void play_sound(Sound snd) {
 
 void set_choices() {
 	if (rand_int(0, 2) == 0) {
-		printf("Forced monster\n");
+		//printf("Forced monster\n");
 		g.choices[0] = object_types[rand_int(NUM_STATIC_TYPES, NUM_OBJECT_TYPES - 1)];
 		g.choices[1] = object_types[rand_int(NUM_STATIC_TYPES, NUM_OBJECT_TYPES - 1)];
 	} else {
-		printf("anything\n");
-		g.choices[0] = object_types[rand_int(0, NUM_OBJECT_TYPES - 1)];
-		g.choices[1] = object_types[rand_int(0, NUM_OBJECT_TYPES - 1)];
+		//printf("anything\n");
+		g.choices[0] = object_types[rand_int(NUM_PROTECTED_TYPES, NUM_OBJECT_TYPES - 1)];
+		g.choices[1] = object_types[rand_int(NUM_PROTECTED_TYPES, NUM_OBJECT_TYPES - 1)];
 	}
-
-	//g.choices[0] = object_types[rand_int(0, NUM_OBJECT_TYPES - 1)];
-	//g.choices[1] = object_types[rand_int(0, NUM_OBJECT_TYPES - 1)];
 }
 
-void start_level_from_file(char* filename) {
+int start_level_from_file(char* filename) {
+	char c;
+	int num = 0;
+	int cur_num = 0;
+	char* filepath = get_file_path(filename);
+	FILE* fp = fopen(filepath, "r");
+	free(filepath);
 
-}
+	int lvl_width = 0, lvl_height = 0;
+	int plr_x = 0, plr_y;
 
-void start_level() {
-	g.plr_position = (Vector2) { 0, 0 };
-	g.plr_health = g.plr_maxhealth;
-	g.curmove_type = MOVE_PLR;
-	g.selected_cell = (Vector2) { -1, -1 };
+	if (fp) {
+		while ((c = getc(fp)) != EOF) {
+			if (cur_num < 4) {
+				if (c >= '0' && c <= '9') {
+					num = num * 10 + (c - '0');
+				} else {
+					if (cur_num == 0) {
+						lvl_width = num;
+					} else if (cur_num == 1) {
+						lvl_height = num;
+					} else if (cur_num == 2) {
+						plr_x = num;
+					} else if (cur_num == 3) {
+						plr_y = num;
+					}
 
-	level* l1 = malloc(sizeof(level));
-	l1->objects = list_new();
-
-	// TODO: load level from file based on g.lvl_num
-	l1->width = 8;
-	l1->height = 3;
-
-	l1->data = malloc(l1->width * sizeof(int*));
-	for (int x = 0; x < l1->width; x++) {
-		l1->data[x] = malloc(l1->height * sizeof(int));
-		for (int y = 0; y < l1->height; y++) {
-			l1->data[x][y] = CELL_EMPTY;
+					cur_num++;
+					num = 0;
+				}
+			} else {
+				break;
+			}
 		}
-	}
-	//l1->data[1][5] = CELL_WIN; // temporary, set end
-	l1->data[2][0] = CELL_NULL;
-	l1->data[1][2] = CELL_NULL;
-	l1->data[0][2] = CELL_NULL;
-	l1->data[3][0] = CELL_NULL;
-	l1->data[5][1] = CELL_NULL;
-	l1->data[6][2] = CELL_NULL;
-	l1->data[7][2] = CELL_NULL;
-	l1->data[7][0] = CELL_WIN;
 
-	set_choices();
-	g.lvl = l1;
+		g.plr_position = (Vector2) { plr_x, plr_y };
+		g.plr_health = g.plr_maxhealth;
+		g.curmove_type = MOVE_PLR;
+		g.chosen_type = -1;
+		g.selected_cell = (Vector2) { -1, -1 };
+
+		level* lvl = malloc(sizeof(level));
+		lvl->objects = list_new();
+
+		lvl->width = lvl_width;
+		lvl->height = lvl_height;
+		lvl->data = malloc(lvl->width * sizeof(int*));
+		for (int x = 0; x < lvl->width; x++) {
+			lvl->data[x] = malloc(lvl->height * sizeof(int));
+			for (int y = 0; y < lvl->height; y++) {
+				if (c != EOF) {
+					int cell_type = c - '0';
+					if (cell_type == CELL_KEY) {
+						lvl->data[x][y] = CELL_OBJ;
+						list_push(lvl->objects, *object_new(object_types[0], (Vector2) { x, y }, object_types[0].health));
+					} else if (cell_type == CELL_DOOR) {
+						lvl->data[x][y] = CELL_OBJ;
+						list_push(lvl->objects, *object_new(object_types[1], (Vector2) { x, y }, object_types[1].health));
+					} else {
+						lvl->data[x][y] = c - '0';
+					}
+
+					c = getc(fp);
+				} else {
+					printf("error, not enough chars for this map\n");
+					exit(1);
+				}
+			}
+		}
+
+		fclose(fp);
+		set_choices();
+		g.lvl = lvl;
+
+		return 0;
+	} else {
+		printf("level not found! (%s)\n", filepath);
+		exit(2);
+	}
 }
 
 void start_game(gamestate* state) {
 	g.lvl_num = 1;
 	g.plr_maxhealth = 5;
 
-	start_level();
+	char* filepath = malloc(100 * sizeof(char));
+	snprintf(filepath, 100, "levels\\level%d.lvl", g.lvl_num);
+	g.file_path = filepath;
+
+	start_level_from_file(g.file_path);
 	*state = GAME;
 }
 
@@ -117,38 +162,10 @@ int valid_move(int x, int y) {
 
 void next_level() {
 	play_sound(snd_menu2);
+
 	// do animation of top and bottom closing in
-
-	// free previous level
-	for (int i = 0; i < g.lvl->width; i++) {
-		free(g.lvl->data[i]);
-	}
-	free(g.lvl->data);
-	list_free(g.lvl->objects);
-	free(g.lvl);
-
-	// create new level ( TODO: grab ++g.lvl_num from file )
-	level* lvl = malloc(sizeof(level));
-	lvl->width = 8;
-	lvl->height = 6;
-	lvl->objects = list_new();
-
-	lvl->data = malloc(lvl->width * sizeof(int*));
-	for (int x = 0; x < lvl->width; x++) {
-		lvl->data[x] = malloc(lvl->height * sizeof(int));
-		for (int y = 0; y < lvl->height; y++) {
-			lvl->data[x][y] = CELL_EMPTY;
-		}
-	}
-
-	lvl->data[1][5] = CELL_WIN; // temporary, set end
-
-
-	g.plr_health = g.plr_maxhealth;
-	g.plr_position = (Vector2) { 0, 0 };
-	g.curmove_type = MOVE_PLR;
-	g.lvl_num++;
-	g.lvl = lvl;
+	animating_transition = 1;
+	animating_to_level = g.lvl_num++;
 }
 
 object* object_at(int x, int y) {
@@ -208,6 +225,7 @@ void move_plr(int dir) {
 	if (valid(g.plr_position.x + vec.x, g.plr_position.y + vec.y)) {
 		Vector2 cell_pos = (Vector2) { g.plr_position.x + vec.x, g.plr_position.y + vec.y };
 		cell_type cell = g.lvl->data[(int)cell_pos.x][(int)cell_pos.y];
+		interact_result result = INTERACT_CONTINUE;
 
 		if (valid_move(cell_pos.x, cell_pos.y) || cell == CELL_OBJ) {
 			if (valid_move(cell_pos.x, cell_pos.y)) {
@@ -218,7 +236,8 @@ void move_plr(int dir) {
 				for (int i = 0; i < g.lvl->objects->length; i++) {
 					object* obj = list_get(g.lvl->objects, i);
 					if (obj->position.x == cell_pos.x && obj->position.y == cell_pos.y) {
-						interact_result result = obj->type.interact(obj);
+						result = obj->type.interact(obj, &g);
+						//printf("result is %d\n", result);
 						if (result != INTERACT_NONE) {
 							if (result == INTERACT_DELETE) {
 								play_sound(snd_menu2);
@@ -240,11 +259,17 @@ void move_plr(int dir) {
 
 				if (g.plr_health <= 0) { // player died
 					play_sound(snd_explode);
-					start_level();
+					start_level_from_file(g.file_path);
+
+					return;
 				}
 			}
-
-			g.curmove_type = MOVE_CHOOSE;
+			//printf("result is now %d\n", result);
+			//printf("result is %d, interact_none is %d\n", result, INTERACT_NONE);
+			if (result != INTERACT_NONE) {
+				//printf("they are not equal, moving on...\n");
+				g.curmove_type = MOVE_CHOOSE;
+			}
 		} else if (cell == CELL_WIN) {
 			next_level();
 		}
@@ -295,9 +320,32 @@ void check_disconnected_cells() {
 }
 
 void game_update() {
-	if (IsKeyPressed(KEY_R)) {
+	if (animating_transition) {
+		if (anim_alpha >= 1 && animating_to_level) {
+			animating_to_level = 0;
+
+			// free previous level
+			for (int i = 0; i < g.lvl->width; i++) {
+			free(g.lvl->data[i]);
+			}
+			free(g.lvl->data);
+			list_free(g.lvl->objects);
+			free(g.lvl);
+			free(g.file_path);
+
+			// load the next level
+			char* filepath = malloc(100 * sizeof(char));
+			snprintf(filepath, 100, "levels\\level%d.lvl", g.lvl_num);
+			//printf("getting file: %s\n", filepath);
+
+			start_level_from_file(filepath);
+			g.file_path = filepath;
+
+		}
+		// dont do anything
+	} else if (IsKeyPressed(KEY_R)) {
 		play_sound(snd_menu2);
-		start_level();
+		start_level_from_file(g.file_path);
 	} else {
 
 		Vector2 choice_size = (Vector2) { 100, 100 };
@@ -409,10 +457,16 @@ void game_draw(int tick) {
 
 	// draw clutter
 	for (int i = 0; i < g.lvl->objects->length; i++) {
-		object obj = *list_get(g.lvl->objects, i);
+		object* obj = list_get(g.lvl->objects, i);
 
-		Texture2D* obj_tex = &obj.type.anim.textures[tick % (obj.type.anim.animation_time * obj.type.anim.num_textures) / obj.type.anim.animation_time];
-		DrawTextureEx(*obj_tex, (Vector2) {map_origin.x + obj.position.x * (cell_size + cell_padding), map_origin.y + obj.position.y * (cell_size + cell_padding) }, 0, square_size, WHITE);
+		Texture2D* obj_tex = &obj->type.anim.textures[tick % (obj->type.anim.animation_time * obj->type.anim.num_textures) / obj->type.anim.animation_time];
+		Vector2 obj_pos = (Vector2) { map_origin.x + obj->position.x * (cell_size + cell_padding), map_origin.y + obj->position.y * (cell_size + cell_padding) };
+		DrawTextureEx(*obj_tex, obj_pos, 0, square_size, WHITE);
+
+		if (obj->damaged) {
+			DrawTextEx(font_main, "-1", (Vector2) {obj_pos.x + cell_size / 4, obj_pos.y - cell_size / 4 - (40 - obj->damaged) / 2}, 24, 0, (Color) { 200, 0, 0, 255 });
+			obj->damaged--;
+		}
 	}
 
 	// draw player moves
@@ -459,6 +513,26 @@ void game_draw(int tick) {
 		}
 
 		DrawTextureEx(*heart_tex, (Vector2) {screen_size.x / 2 - health_width / 2 + i * (cell_size + cell_padding), 0}, 0, square_size, WHITE);
+	}
+
+	// animated transition
+	if (animating_transition) {
+		// TODO: make this images
+		float real_alpha = anim_alpha;
+		if (anim_alpha < 1) {
+			real_alpha = anim_alpha;
+		} else {
+			real_alpha = 1 - (anim_alpha - 1);
+		} 
+
+		DrawRectangleV((Vector2) { 0, 0 }, (Vector2) { screen_size.x, real_alpha * (screen_size.y / 2) }, TRANSITION_COLOR);
+		DrawRectangleV((Vector2) { 0, screen_size.y - (real_alpha * (screen_size.y / 2)) }, (Vector2) { screen_size.x, real_alpha * (screen_size.y / 2) }, TRANSITION_COLOR);
+
+		anim_alpha += 0.025;
+		if (anim_alpha >= 2) {
+			animating_transition = 0;
+			anim_alpha = 0.0f;
+		}
 	}
 
 

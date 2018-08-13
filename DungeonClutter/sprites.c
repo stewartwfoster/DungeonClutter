@@ -37,6 +37,10 @@ void sprites_init() {
 	img_slime2 = texture_load("resources\\slime2.png");
 	img_knight = texture_load("resources\\knight.png");
 	img_knight2 = texture_load("resources\\knight2.png");
+	img_potion = texture_load("resources\\potion.png");
+	img_key = texture_load("resources\\key.png");
+	img_key2 = texture_load("resources\\key2.png");
+	img_door = texture_load("resources\\door.png");
 
 	img_stairs = texture_load("resources\\stairs.png");
 	img_bricks = texture_load("resources\\bricks.png");

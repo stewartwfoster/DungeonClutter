@@ -3,31 +3,52 @@
 #include "game.h"
 #include "list.h"
 #include "utils.h"
+#include <string.h>
 
 object_type object_types[NUM_OBJECT_TYPES];
 
 void objects_init() {
+
+	// PROTECTED OBJECT TYPES
+
+	Texture2D* key_textures = malloc(sizeof(Texture2D) * 2);
+	key_textures[0] = img_key;
+	key_textures[1] = img_key2;
+	object_types[0] = (object_type) { "Key", { key_textures, 2, 20 }, 2, &open_door, &no_effect };
+
+	Texture2D* door_textures = malloc(sizeof(Texture2D) * 1);
+	door_textures[0] = img_door;
+	object_types[1] = (object_type) { "Door", { door_textures, 1, 1 }, 2, &no_effect, &no_effect };
+
+	// STATIC OBJECT TYPES
+
 	Texture2D* chest_textures = malloc(sizeof(Texture2D) * 1);
 	chest_textures[0] = img_chest;
-	object_types[0] = (object_type) { "Chest", { chest_textures, 1, 1 }, -1, &no_effect, &no_effect };
+	object_types[2] = (object_type) { "Chest", { chest_textures, 1, 1 }, -1, &no_effect, &no_effect };
 
 	Texture2D* table_textures = malloc(sizeof(Texture2D) * 1);
 	table_textures[0] = img_table;
-	object_types[1] = (object_type) { "Table", { table_textures, 1, 1 }, -1, &no_effect, &no_effect };
+	object_types[3] = (object_type) { "Table", { table_textures, 1, 1 }, -1, &no_effect, &no_effect };
 
 	Texture2D* bookshelf_textures = malloc(sizeof(Texture2D) * 1);
 	bookshelf_textures[0] = img_bookshelf;
-	object_types[2] = (object_type) { "Bookshelf", { bookshelf_textures, 1, 1 }, -1, &no_effect, &no_effect };
+	object_types[4] = (object_type) { "Bookshelf", { bookshelf_textures, 1, 1 }, -1, &no_effect, &no_effect };
+
+	Texture2D* potion_textures = malloc(sizeof(Texture2D) * 1);
+	potion_textures[0] = img_potion;
+	object_types[5] = (object_type) { "Potion", { potion_textures, 1, 1 }, 2, &heal_player, &no_effect };
+
+	// MONSTER OBJECT TYPES
 
 	Texture2D* slime_textures = malloc(sizeof(Texture2D) * 2);
 	slime_textures[0] = img_slime;
 	slime_textures[1] = img_slime2;
-	object_types[3] = (object_type) { "Slime", { slime_textures, 2, 20 }, 2, &attack, &move_to_player };
+	object_types[6] = (object_type) { "Slime", { slime_textures, 2, 20 }, 2, &attack, &move_to_player };
 
 	Texture2D* knight_textures = malloc(sizeof(Texture2D) * 2);
 	knight_textures[0] = img_knight;
 	knight_textures[1] = img_knight2;
-	object_types[4] = (object_type) { "Knight", { knight_textures, 2, 20 }, 4, &attack, &move_to_player };
+	object_types[7] = (object_type) { "Knight", { knight_textures, 2, 20 }, 4, &attack, &move_to_player };
 }
 
 object* object_new(object_type type, Vector2 position, int health) {
@@ -36,6 +57,7 @@ object* object_new(object_type type, Vector2 position, int health) {
 	obj->position = position;
 	obj->health = health;
 	obj->max_health = health;
+	obj->damaged = 0;
 
 	return obj;
 }
@@ -44,38 +66,43 @@ void object_free(object* obj) {
 	free(obj);
 }
 
-interact_result no_effect(object* obj) {
+interact_result no_effect(object* obj, game* g) {
 	return INTERACT_NONE;
 }
 
-interact_result attack(object* obj) {
+interact_result open_door(object* obj, game* g) {
+	// go through g.lvl->objects and delete any doors
+	for (int i = 0; i < g->lvl->objects->length; i++) {
+		object* o = list_get(g->lvl->objects, i);
+		if (strcmp(o->type.name, "Door") == 0) {
+			g->lvl->data[(int)o->position.x][(int)o->position.y] = CELL_EMPTY;
+			list_remove(g->lvl->objects, i);
+			i = 0;
+		}
+	}
+	return INTERACT_DELETE;
+}
+
+interact_result heal_player(object* obj, game* g) {
+	if (g->plr_health + 2 > g->plr_maxhealth) {
+		g->plr_health += 2;
+	} else {
+		g->plr_health = g->plr_maxhealth;
+	}
+	return INTERACT_DELETE;
+}
+
+interact_result attack(object* obj, game* g) {
 	// todo: attack hurts player
 	obj->health--;
 	if (obj->health <= 0) { // killed object
 		return INTERACT_DELETE;
 	}
+
+	obj->damaged = 40;
 	return INTERACT_CONTINUE;
 }
 
-/*void flood_fill_primer(int** visited, int x, int y, int move, game* g) {
-	printf("at %d, %d setting to %d\n", x, y, move);
-	visited[x][y] = move;
-	for (int x = 0; x < g->lvl->height; x++) {
-		for (int y = 0; y < g->lvl->width; y++) {
-			printf("%d\t", visited[y][x]);
-		}
-		printf("\n");
-	}
-
-	printf("visited %d, %d is %d\n", x, y, visited[x][y]);
-	for (int i = 0; i < 4; i++) {
-		Vector2 new_pos = (Vector2) { x + dirs[i].x, y + dirs[i].y };
-		if (valid(new_pos.x, new_pos.y) && !visited[(int)new_pos.x][(int)new_pos.y] && valid_move(new_pos.x, new_pos.y)) {
-			flood_fill_primer(visited, new_pos.x, new_pos.y, move + 1, g);
-			printf("move: %d\n", move);
-		}
-	}
-}*/
 
 void flood_fill_primer(int** visited, int x, int y, int move) {
 	for (int i = 0; i < 4; i++) {

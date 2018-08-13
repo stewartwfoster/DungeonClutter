@@ -1,0 +1,3 @@
+﻿  main.c
+c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\main.c(77): warning C4013: 'menu_free' undefined; assuming extern returning int
+  DungeonClutter.vcxproj -> C:\Users\stewa\source\repos\DungeonClutter\Debug\DungeonClutter.exe

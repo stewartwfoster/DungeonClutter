@@ -9,6 +9,7 @@
 #include "list.h"
 
 int main(int argc, char** argv) {
+	exe_dir = argv[0];
 
 	// initialize window
 	InitWindow(800, 600, TITLE);

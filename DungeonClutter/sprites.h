@@ -26,6 +26,10 @@ Texture2D img_slime;
 Texture2D img_slime2;
 Texture2D img_knight;
 Texture2D img_knight2;
+Texture2D img_potion;
+Texture2D img_key;
+Texture2D img_key2;
+Texture2D img_door;
 
 Texture2D img_bricks;
 Texture2D img_bricks2;

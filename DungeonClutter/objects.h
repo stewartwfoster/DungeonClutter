@@ -2,8 +2,9 @@
 
 #include "raylib.h"
 
-#define NUM_OBJECT_TYPES 5
-#define NUM_STATIC_TYPES 3
+#define NUM_OBJECT_TYPES 8
+#define NUM_STATIC_TYPES 6
+#define NUM_PROTECTED_TYPES 2
 
 typedef enum interact_result {
 	INTERACT_NONE, INTERACT_DELETE, INTERACT_CONTINUE
@@ -28,6 +29,7 @@ typedef struct object {
 	Vector2 position;
 	int health;
 	int max_health;
+	int damaged; // when damaged, start at ticks, remove each tick damage is shown
 } object;
 
 void objects_init();
@@ -36,9 +38,5 @@ void object_free(object* obj);
 
 extern object_type object_types[NUM_OBJECT_TYPES];
 
-// interact effects
-interact_result no_effect(object* obj);
-interact_result attack(object* obj);
 
-// step effects
-void move_to_player(object* obj);
+

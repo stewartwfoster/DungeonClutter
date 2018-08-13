@@ -70,7 +70,7 @@ void menu_draw(menu* menu) {
 		DrawTextEx(font_main, txt, (Vector2) { screen_size.x / 2 - text_size.x / 2, ypos - text_size.y / 2 }, fontsize, 0, clr);
 	}
 
-	const char* msg = "created in 48h for ludum dare 42";
+	const char* msg = "created in 72h for ludum dare 42";
 	text_size = MeasureTextEx(font_main, msg, 18, 0);
 	DrawTextEx(font_main, msg, (Vector2) { screen_size.x / 2 - text_size.x / 2, screen_size.y - text_size.y * 2 }, 18, 0, (Color) { 255, 255, 255, 180 });
 

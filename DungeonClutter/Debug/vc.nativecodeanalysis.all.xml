@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\</FILEPATH>
+      <FILENAME>list.c</FILENAME>
+      <LINE>20</LINE>
+      <COLUMN>21</COLUMN>
+    </SFA>
+    <DEFECTCODE>6308</DEFECTCODE>
+    <DESCRIPTION>'realloc' might return null pointer: assigning null pointer to 'list-&gt;data', which is passed as an argument to 'realloc', will cause the original memory block to be leaked.</DESCRIPTION>
+    <FUNCTION>list_increase</FUNCTION>
+    <DECORATED>list_increase</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\</FILEPATH>
+      <FILENAME>utils.c</FILENAME>
+      <LINE>7</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: 'snprintf'.</DESCRIPTION>
+    <FUNCTION>get_file_path</FUNCTION>
+    <DECORATED>get_file_path</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\</FILEPATH>
+      <FILENAME>utils.c</FILENAME>
+      <LINE>7</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6387</DEFECTCODE>
+    <DESCRIPTION>'buffer' could be '0':  this does not adhere to the specification for the function 'snprintf'. </DESCRIPTION>
+    <FUNCTION>get_file_path</FUNCTION>
+    <DECORATED>get_file_path</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\</FILEPATH>
+        <FILENAME>utils.c</FILENAME>
+        <LINE>6</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'buffer' may be NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\</FILEPATH>
+        <FILENAME>utils.c</FILENAME>
+        <LINE>7</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'buffer' is an Input to 'snprintf' (declared at c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h:1932)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\stewa\source\repos\dungeonclutter\dungeonclutter\</FILEPATH>
+        <FILENAME>utils.c</FILENAME>
+        <LINE>7</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'buffer' should not be NULL, because this is not consistent with the SAL annotation on 'snprintf'</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT></DEFECTS>
