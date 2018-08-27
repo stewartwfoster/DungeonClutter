@@ -32,13 +32,16 @@ int start_level_from_file(char* filename) {
 	int num = 0;
 	int cur_num = 0;
 	char* filepath = get_file_path(filename);
-	FILE* fp = fopen(filepath, "r");
+	FILE* fp;
+	printf("opening: %s\n", filepath);
+	int err = fopen_s(&fp, filepath, "r");
+	printf("err: %d\n", err);
 	free(filepath);
 
 	int lvl_width = 0, lvl_height = 0;
 	int plr_x = 0, plr_y;
 
-	if (fp) {
+	if (err == 0) {
 		while ((c = getc(fp)) != EOF) {
 			if (cur_num < 4) {
 				if (c >= '0' && c <= '9') {
@@ -74,6 +77,7 @@ int start_level_from_file(char* filename) {
 		lvl->width = lvl_width;
 		lvl->height = lvl_height;
 		lvl->data = malloc(lvl->width * sizeof(int*));
+
 		for (int x = 0; x < lvl->width; x++) {
 			lvl->data[x] = malloc(lvl->height * sizeof(int));
 			for (int y = 0; y < lvl->height; y++) {
