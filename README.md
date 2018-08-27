@@ -1,4 +1,4 @@
-# DungeonClutter
+# Clutter Dungeon
 Ludum Dare 42 game (made in 72h for jam)
 https://ldjam.com/events/ludum-dare/42/clutter-dungeon
 https://kodraan.itch.io/clutter-dungeon
